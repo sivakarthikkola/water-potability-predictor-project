@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Water Potability Predictor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
+      background-size: cover;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #333;
+    }
+
+    .container {
+      background: rgba(255, 245, 230, 0.9); /* Light sandy beige */
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+      max-width: 550px;
+      width: 100%;
+      backdrop-filter: blur(5px);
+    }
+
+    h1 {
+      text-align: center;
+      color: #00695c; /* Teal inspired by ocean */
+      margin-bottom: 30px;
+      font-size: 2.5em;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 12px;
+      margin: 5px 0;
+      border: 2px solid #4dd0e1; /* Light cyan for beach waves */
+      border-radius: 8px;
+      font-size: 16px;
+      box-sizing: border-box;
+      transition: border-color 0.3s ease;
+      background: #e0f7fa; /* Very light blue for water */
+    }
+
+    input[type="number"]:focus {
+      outline: none;
+      border-color: #00acc1; /* Brighter cyan on focus */
+    }
+
+    input[type="submit"] {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(90deg, #ffca28, #26a69a); /* Yellow to teal gradient */
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 18px;
+      text-transform: uppercase;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+      transform: scale(1.05);
+      background: linear-gradient(90deg, #26a69a, #ffca28);
+    }
+
+    .result {
+      text-align: center;
+      font-size: 22px;
+      margin-top: 20px;
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(90deg, #26a69a, #4dd0e1); /* Teal to cyan gradient */
+      padding: 15px;
+      border-radius: 15px;
+      position: relative;
+      overflow: hidden;
+      animation: pulse 2s infinite;
+    }
+
+    .result::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+      animation: wave 5s infinite linear;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes wave {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 600px) {
+      .container { padding: 20px; margin: 10px; }
+      h1 { font-size: 2em; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Water Potability Predictor</h1>
+    <form method="POST" action="/predict">
+      <div class="form-group">
+        <input type="number" name="ph" step="any" placeholder="pH" required>
+      </div>
+      <div class="form-group">
+        <input type="number" name="Hardness" step="any" placeholder="Hardness" required>
+      </div>
+      <div class="form-group">
+        <input type="number" name="Solids" step="any" placeholder="Solids" required>
+      </div>
+      <div class="form-group">
+        <input type="number" name="Chloramines" step="any" placeholder="Chloramines" required>
+      </div>
+      <div class="form-group">
+        <input type="number" name="Sulfate" step="any" placeholder="Sulfate" required>
+      </div>
+      <div class="form-group">
+        <input type="number" name="Conductivity" step="any" placeholder="Conductivity" required>
+      </div>
+      <div class="form-group">
+        <input type="number" name="Organic_carbon" step="any" placeholder="Organic Carbon" required>
+      </div>
+      <div class="form-group">
+        <input type="number" name="Trihalomethanes" step="any" placeholder="Trihalomethanes" required>
+      </div>
+      <div class="form-group">
+        <input type="number" name="Turbidity" step="any" placeholder="Turbidity" required>
+      </div>
+      <input type="submit" value="Predict">
+    </form>
+
+    {% if prediction %}
+      <div class="result">
+        Result: {{ prediction }}
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>

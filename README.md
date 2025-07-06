@@ -1,7 +1,7 @@
-# water-potability-predictor-project
 
 
-This project predicts whether water is safe to drink based on chemical properties using a machine learning model.
+# This project predicts whether water is safe to drink based on chemical properties using a machine learning model.
+
 
 ## Features
 - Trained on water quality dataset
@@ -17,3 +17,7 @@ This project predicts whether water is safe to drink based on chemical propertie
 ## How to Run
 1. Train the modegitl using the notebook
 2. Run Flask app:
+
+## OUTPUT :
+
+![projectImg](https://github.com/user-attachments/assets/89e6687a-dfb8-4872-bb73-04c06feabcd7)
